@@ -7,7 +7,7 @@ internal class Program
     {
         int a, b, c = 0, poma, pomb, sumaa = 0, sumab = 0, n, pom = 1, broj, pomc, pomcc, brojac, drugiBroj, sumak = 0;
         int[] d;
-        int[,] mat;
+        int[,] mat, rot;
         float srednjaVredonst;
         Console.WriteLine("Unesite a");
         a = int.Parse(Console.ReadLine());
@@ -88,14 +88,14 @@ internal class Program
         {
             for (int j = 0; j < 10; j++)
                 mat[i, j] = d[j];
-                pom = d[0];
-                for (int j = 0; j < 9; j++)
-                    d[j] = d[j + 1];
-                d[9] = pom;
+            pom = d[0];
+            for (int j = 0; j < 9; j++)
+                d[j] = d[j + 1];
+            d[9] = pom;
         }
+
         for (int i = 0; i < 10; i++)
         {
-            sumak = 0;
             for (int j = 0; j < 10; j++)
                 if ((i + j) >= 9) sumak += mat[i, j];
             mat[10, i] = sumak;
@@ -103,8 +103,21 @@ internal class Program
 
         for (int i = 0; i < 11; i++)
         {
-            for (int  j = 0; j < 10; j++)
-                Console.Write( mat[i, j] + "\t");
+            for (int j = 0; j < 10; j++)
+                Console.Write(mat[i, j] + "\t");
+            Console.WriteLine();
+        }
+
+        //1.5
+        Console.WriteLine("\n\n******** odgovor 5 ***********\n\n");
+        rot = new int[10, 11];
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 11; j++)
+                rot[i, j] = mat[j, 10 - 1 - i];
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 11; j++)
+                Console.Write(rot[i, j] + "\t");
             Console.WriteLine();
         }
     }
